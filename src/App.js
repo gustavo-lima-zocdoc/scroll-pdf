@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App">
       <iframe
-        src={data}
+        src={`${data}#page=2`}
         width="500px"
         height="500px"
         title="PDF File"
