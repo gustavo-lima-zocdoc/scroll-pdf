@@ -12,6 +12,25 @@ function App() {
   // https://stackoverflow.com/questions/5343114/pdf-open-parameters-comment-commentid-doesnt-work
   //
   // ref: https://stackoverflow.com/questions/15556210/display-pdf-in-web-page-and-scroll-it-programmatically
+
+
+  /**
+   * PDFIUM
+   * https://www.infoq.com/news/2014/06/google-chrome-pdf-engine-free/
+   * https://pdfium.googlesource.com/
+   * https://pdfium.googlesource.com/pdfium/
+   * 
+   * https://github.com/pvginkel/PdfiumViewer
+   * 
+   * 
+   * 
+   * 
+   * https://pdfium.googlesource.com/pdfium/#embedding-pdfium-in-your-own-projects
+   */
+
+  // https://news.ycombinator.com/item?id=24119589
+
+  
   const goToPage = `#page=3`;
   const goToNamedDestination = `#nameddest=baby`;
   return (
