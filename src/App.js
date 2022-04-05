@@ -12,11 +12,12 @@ function App() {
   // https://stackoverflow.com/questions/5343114/pdf-open-parameters-comment-commentid-doesnt-work
   //
   // ref: https://stackoverflow.com/questions/15556210/display-pdf-in-web-page-and-scroll-it-programmatically
-  const goToPage = `#page=3&comment=babuy`;
+  const goToPage = `#page=3`;
+  const goToNamedDestination = `#nameddest=baby`;
   return (
     <div className="App">
       <iframe
-        src={`${data}${goToPage}`}
+        src={`${data}${goToNamedDestination}`}
         width="100%"
         height="500px"
         title="PDF File"
