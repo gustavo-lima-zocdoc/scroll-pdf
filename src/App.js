@@ -1,26 +1,35 @@
+import {useEffect,useRef} from 'react';
+import WebViewer from '@pdftron/webviewer';
+
 import { data } from "./pdffile";
 
 function App() {
-  // If you are using Acrobat Reader to display the file in the browser, then you could use Acrobat Reader URL parameters.
-  // URL PARAMETERS - https://opensource.adobe.com/dc-acrobat-sdk-docs/
-  // https://pdfobject.com/pdf/pdf_open_parameters_acro8.pdf
-  // https://kb2.adobe.com/jp/cps/511/511759/attachments/511759_pdf_open_parameters.pdf
-  // https://pdfobject.com/
-  // 
-  // EMBED PDF USING ACROBAT READER - https://stackoverflow.com/questions/2474811/how-to-embed-pdf-in-a-web-page-using-acrobat-reader-instead-of-acrobat
-  //
-  // https://stackoverflow.com/questions/5343114/pdf-open-parameters-comment-commentid-doesnt-work
-  //
-  // ref: https://stackoverflow.com/questions/15556210/display-pdf-in-web-page-and-scroll-it-programmatically
-  const goToPage = `#page=3&comment=babuy`;
+  const viewer = useRef(null);
+  const base64ToBlob = base64 => {
+    const binaryString = window.atob(base64);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; ++i) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    return new Blob([bytes], { type: 'application/pdf' });
+  };
+  useEffect(() => {
+    WebViewer(
+      {
+        path: '/lib',
+      },
+      viewer.current,
+    ).then((instance) => {
+        const { UI, Core: { documentViewer } } = instance;
+        
+        UI.loadDocument(base64ToBlob(data), { filename: `baby.pdf` });
+      });
+  }, []);
   return (
-    <div className="App">
-      <iframe
-        src={`${data}${goToPage}`}
-        width="100%"
-        height="500px"
-        title="PDF File"
-      />
+    <div className="MyComponent">
+      <div className="header">React sample</div>
+      <div className="webviewer" ref={viewer} style={{height: "100vh"}}></div>
     </div>
   );
 }
